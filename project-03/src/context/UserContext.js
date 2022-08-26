@@ -1,10 +1,10 @@
-import { createContext, useEffect, useContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import api from '../api';
 import { toast } from 'react-toastify';
 
 const UserContext = createContext({})
 
-export default function UserProvider(props) {
+function UserProvider(props) {
 
     const [registerData, setRegisterData] = useState({
         'email': '',
@@ -97,17 +97,22 @@ export default function UserProvider(props) {
     }, [tokens])
 
     const context = {
+        loginDataUseState: () => {
+            return {
+                loginData, setLoginData
+            }
+        },
         getTokens: () => {
             return tokens
         },
         getUserProfile: () => {
             return user
         },
-        register: (registerInfo) => {
+        register: async (registerInfo) => {
             const registerResponse = await api.post('/users/register', registerInfo)
             if (registerResponse) {
                 setTokens(registerResponse.data)
-                localStorage.setItem('tokens', JSON.stringify(loginResponse.data))
+                localStorage.setItem('tokens', JSON.stringify(registerResponse.data))
                 setRegisterData({
                     'email': '',
                     'password': '',
@@ -166,3 +171,5 @@ export default function UserProvider(props) {
         </UserContext.Provider>
     )
 }
+
+export { UserContext, UserProvider }
