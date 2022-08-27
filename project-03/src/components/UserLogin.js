@@ -1,25 +1,23 @@
 import { Fragment, useContext } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { UserContext } from '../context/UserContext'
 
 export default function UserLogin() {
 
-    const context = useContext(UserContext)
+    const { loginData, setLoginData, login } = useContext(UserContext)
 
     const navigate = useNavigate()
 
     const updateFormField = (e) => {
-        context.loginDataUseState().setLoginData({
-            ...context.loginDataUseState().loginData,
+        setLoginData({
+            ...loginData,
             [e.target.name]: e.target.value
         })
     }
 
-    const login = async () => {
-        
-        await context.login(context.loginDataUseState().loginData)
-        
-        if (context.getUserProfile()) {
+    const userLogin = async () => {
+        const loginSuccess = await login(loginData)
+        if (loginSuccess) {
             navigate('/profile')
         } else {
             navigate('/register')
@@ -33,15 +31,17 @@ export default function UserLogin() {
             <label>Email</label>
             <input type='text'
                    name='email'
-                   value={context.loginDataUseState().loginData.email}
+                   value={loginData.email}
                    onChange={updateFormField} />
             
             <label>Password</label>
             <input type='text'
                    name='password'
-                   value={context.loginDataUseState().loginData.password}
+                   value={loginData.password}
                    onChange={updateFormField} />
-            <button onClick={login}>Click</button>
+            <button onClick={userLogin}>Click</button>
+
+            <Link to={'/register'}>Register</Link>
         </Fragment>
     )
 }

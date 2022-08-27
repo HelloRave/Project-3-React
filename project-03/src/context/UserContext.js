@@ -34,7 +34,7 @@ function UserProvider(props) {
                             Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
-
+        
                     if (profileResponse) {
                         setUser(profileResponse.data)
                     }
@@ -48,14 +48,13 @@ function UserProvider(props) {
                         draggable: true,
                         progress: undefined,
                     })
-
+        
                     localStorage.removeItem('tokens')
                     setTokens(null)
                     setUser(null)
                 }
                 
             }
-
             getUserData()
         }
 
@@ -97,29 +96,49 @@ function UserProvider(props) {
     }, [tokens])
 
     const context = {
-        loginDataUseState: () => {
-            return {
-                loginData, setLoginData
-            }
-        },
-        getTokens: () => {
-            return tokens
-        },
-        getUserProfile: () => {
-            return user
-        },
+        loginData, setLoginData, 
+        tokens, user,
+        registerData, setRegisterData, 
         register: async (registerInfo) => {
-            const registerResponse = await api.post('/users/register', registerInfo)
-            if (registerResponse) {
-                setTokens(registerResponse.data)
-                localStorage.setItem('tokens', JSON.stringify(registerResponse.data))
-                setRegisterData({
-                    'email': '',
-                    'password': '',
-                    'first_name': '',
-                    'last_name': ''
-                })
+            try {
+                const registerResponse = await api.post('/users/register', registerInfo)
+                if (registerResponse) {
+                    setTokens(registerResponse.data)
+                    localStorage.setItem('tokens', JSON.stringify(registerResponse.data))
+                    setRegisterData({
+                        'email': '',
+                        'password': '',
+                        'first_name': '',
+                        'last_name': ''
+                    })
+                    return true 
+                }
+            } catch(error) {
+                if (error?.response?.status === 403) {
+                    alert('User existed')
+                    toast.error('🦄 Login error!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    alert('Server error')
+                    toast.error('🦄 Server error!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
             }
+            
         },
         login: async (loginInfo) => {
             try {
@@ -131,18 +150,33 @@ function UserProvider(props) {
                         'email': '',
                         'password': ''
                     })
+                    return true
                 }
-            } catch {
-                alert('wrong login info')
-                toast.error('🦄 Login error!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+            } catch(error) {
+                if (error?.response?.status === 401) {
+                    alert('Wrong login info')
+                    toast.error('🦄 Login error!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    alert('Server error')
+                    toast.error('🦄 Server error!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
+                
             }
         },
         logout: async () => {
@@ -152,16 +186,31 @@ function UserProvider(props) {
                 })
                 localStorage.removeItem('tokens')
                 setTokens(null)
-            } catch {
-                toast.error('🦄 Logout error!', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                });
+                setUser(null)
+            } catch(error) {
+                if (error?.response?.status === 400) {
+                    alert('Invalid')
+                    toast.error('🦄 Login error!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                } else {
+                    alert('Server error')
+                    toast.error('🦄 Server error!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    });
+                }
             }
         }
     }
