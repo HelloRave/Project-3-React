@@ -1,15 +1,29 @@
 import { Fragment, useContext } from "react"
+import { useNavigate } from "react-router-dom"
 import { UserContext } from '../context/UserContext'
 
 export default function UserLogin() {
 
     const context = useContext(UserContext)
 
+    const navigate = useNavigate()
+
     const updateFormField = (e) => {
         context.loginDataUseState().setLoginData({
             ...context.loginDataUseState().loginData,
             [e.target.name]: e.target.value
         })
+    }
+
+    const login = async () => {
+        
+        await context.login(context.loginDataUseState().loginData)
+        
+        if (context.getUserProfile()) {
+            navigate('/profile')
+        } else {
+            navigate('/register')
+        }
     }
 
     return(
@@ -27,7 +41,7 @@ export default function UserLogin() {
                    name='password'
                    value={context.loginDataUseState().loginData.password}
                    onChange={updateFormField} />
-            <button onClick={() => {context.login(context.loginDataUseState().loginData)}}>Click</button>
+            <button onClick={login}>Click</button>
         </Fragment>
     )
 }

@@ -133,6 +133,7 @@ function UserProvider(props) {
                     })
                 }
             } catch {
+                alert('wrong login info')
                 toast.error('🦄 Login error!', {
                     position: "top-right",
                     autoClose: 5000,
