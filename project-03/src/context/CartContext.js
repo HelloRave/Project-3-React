@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import { UserContext } from "./UserContext";
+import { loadStripe } from '@stripe/stripe-js';
 
 const CartContext = createContext({})
 
@@ -16,7 +17,10 @@ function CartProvider(props) {
     const [loadCart, setLoadCart] = useState(true)
 
     useEffect(() => {
-        
+        const stripe = loadStripe(stripeKeys.publishableKey)
+        stripe.redirectToCheckout({
+            sessionId: stripeKeys.sessionId
+        })
     }, [stripeKeys])
 
     const context = {

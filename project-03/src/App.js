@@ -13,30 +13,34 @@ import Register from './components/Register';
 import UserLogin from './components/UserLogin';
 import { ProductProvider } from './context/ProductContext';
 import Navbar from './components/Navbar';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <UserProvider>
-          <ProductProvider>
+          <CartProvider>
+            <ProductProvider>
 
-            {/* Navbar */}
-            <Navbar />
+              {/* Navbar */}
+              <Navbar />
 
-            <Routes>
+              <Routes>
 
-              <Route path='/' element={<Landing />} />
-              <Route path='/products' element={<ProductListing />} />
-              <Route path='/products/:product_id' element={<Products />} />
-              <Route path='/cart' element={<Cart />} />
-              <Route path='/orders' element={<Orders />} />
-              <Route path='/profile' element={<Profile />} />
-              <Route path='/register' element={<Register />} />
-              <Route path='/login' element={<UserLogin />} />
+                <Route path='/' element={<Landing />} />
+                <Route path='/products' element={<ProductListing />} />
+                <Route path='/products/:product_id' element={<Products />} />
+                <Route path='/cart' element={<Cart />} />
+                <Route path='/orders' element={<Orders />} />
+                <Route path='/profile' element={<Profile />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/login' element={<UserLogin />} />
 
-            </Routes>
-          </ProductProvider>
+              </Routes>
+              
+            </ProductProvider>
+          </CartProvider>
         </UserProvider>
       </Router>
     </div>
