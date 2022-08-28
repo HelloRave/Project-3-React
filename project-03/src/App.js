@@ -12,6 +12,7 @@ import Profile from './components/Profile';
 import Register from './components/Register';
 import UserLogin from './components/UserLogin';
 import { ProductProvider } from './context/ProductContext';
+import Navbar from './components/Navbar';
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
       <Router>
         <UserProvider>
           <ProductProvider>
+
+            {/* Navbar */}
+            <Navbar />
+
             <Routes>
 
               <Route path='/' element={<Landing />} />

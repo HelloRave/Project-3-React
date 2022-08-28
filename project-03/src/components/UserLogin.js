@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContext'
 
 export default function UserLogin() {
 
-    const { loginData, setLoginData, login } = useContext(UserContext)
+    const { loginData, setLoginData, login, user } = useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -20,7 +20,7 @@ export default function UserLogin() {
         if (loginSuccess) {
             navigate('/profile')
         } else {
-            navigate('/register')
+            navigate('/register') //Improve please
         }
     }
 
