@@ -17,7 +17,7 @@ function ProductProvider(props) {
 
     const context = {
         products, oneProduct, setOneProduct,
-        isLoading, setLoading, 
+        isLoading, setLoading, searchInputs, setSearchInputs, 
         getProducts: async() => {
             try {
                 const productResponse = await api.post('/products', searchInputs)
