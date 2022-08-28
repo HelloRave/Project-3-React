@@ -4,7 +4,8 @@ import { ProductContext } from "../context/ProductContext";
 
 export default function ProductListing() {
 
-    const { products, isLoading, searchInputs, setSearchInputs, getProducts } = useContext(ProductContext)
+    const { products, isLoading, searchInputs, setSearchInputs, getProducts,
+            brands, categories, allergens, flavours } = useContext(ProductContext)
 
     const updateFormField = (e) => {
         setSearchInputs({
@@ -31,6 +32,51 @@ export default function ProductListing() {
                        name='product_name'
                        value={searchInputs?.product_name || ""}
                        onChange={updateFormField} />
+            </div>
+
+            <div>
+                <label>Brands</label>
+                <select name='brand_id'
+                        value={searchInputs?.brand_id || ""}
+                        onChange={updateFormField}>
+                    <option value="">----------</option>
+                    {brands?.map(brand => {
+                        return(
+                            <option key={brand[0]} value={brand[0]}>{brand[1]}</option>
+                        )
+                    })}
+                </select>
+            </div>
+
+            <div>
+                <label>Flavours</label>
+                <select name='flavour_id'
+                        value={searchInputs?.flavour_id || ""}
+                        onChange={updateFormField}>
+                    <option value="">----------</option>
+                    {flavours?.map(flavour => {
+                        return(
+                            <option key={flavour[0]} value={flavour[0]}>{flavour[1]}</option>
+                        )
+                    })}
+                </select>
+            </div>
+
+            {/* Allergens - multi select */}
+            {/* Serving size and cost - slider */}
+
+            <div>
+                <label>Category</label>
+                <select name='category_id'
+                        value={searchInputs?.category_id || ""}
+                        onChange={updateFormField}>
+                    <option value="">----------</option>
+                    {categories?.map(category => {
+                        return(
+                            <option key={category[0]} value={category[0]}>{category[1]}</option>
+                        )
+                    })}
+                </select>
             </div>
 
             <button onClick={resetSearch}>Reset</button>
