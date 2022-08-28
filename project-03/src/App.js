@@ -11,26 +11,27 @@ import Orders from './components/Orders';
 import Profile from './components/Profile';
 import Register from './components/Register';
 import UserLogin from './components/UserLogin';
+import { ProductProvider } from './context/ProductContext';
 
 function App() {
   return (
     <div className="App">
       <Router>
         <UserProvider>
+          <ProductProvider>
+            <Routes>
 
-          <Routes>
+              <Route path='/' element={<Landing />} />
+              <Route path='/products' element={<ProductListing />} />
+              <Route path='/products/:product_id' element={<Products />} />
+              <Route path='/cart' element={<Cart />} />
+              <Route path='/orders' element={<Orders />} />
+              <Route path='/profile' element={<Profile />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/login' element={<UserLogin />} />
 
-            <Route path='/' element={<Landing />} />
-            <Route path='/products' element={<ProductListing />} />
-            <Route path='/products/:product_id' element={<Products />} />
-            <Route path='/cart' element={<Cart />} />
-            <Route path='/orders' element={<Orders />} />
-            <Route path='/profile' element={<Profile />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<UserLogin />} />
-
-          </Routes>
-
+            </Routes>
+          </ProductProvider>
         </UserProvider>
       </Router>
     </div>
