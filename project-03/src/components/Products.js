@@ -4,12 +4,13 @@ import { ProductContext } from "../context/ProductContext";
 
 export default function Products() {
 
-    const { oneProduct, getProducts, getProductById } = useContext(ProductContext)
+    const { oneProduct, getProducts, getProductById, isLoading, setLoading } = useContext(ProductContext)
 
     const { product_id } = useParams()
 
     useEffect(() => {
-        const getProduct = async() => {
+        const getProduct = async () => {
+            setLoading(true)
             await getProductById(product_id)
         }
         getProduct()
@@ -18,7 +19,27 @@ export default function Products() {
     return (
         <Fragment>
             <p>Individual products</p>
-            {/* {oneProduct.variants[0].variant_id} */}
+            {isLoading ?
+
+                <p>Loading</p>
+
+                :
+
+                <Fragment>
+                    <p>{oneProduct.product?.serving_size}</p>
+                    {oneProduct.variants?.length === 0 ?
+
+                        null
+
+                        :
+
+                        oneProduct.variants?.map(variant => {
+                            return(
+                                <p>{variant.variant_id}</p>
+                            )
+                        })}
+                </Fragment>}
+
         </Fragment>
     )
 }

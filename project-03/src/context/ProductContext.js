@@ -9,18 +9,20 @@ function ProductProvider(props) {
     const [products, setProducts] = useState([])
     const [oneProduct, setOneProduct] = useState([])
     const [searchInputs, setSearchInputs] = useState({})
+    const [isLoading, setLoading] = useState(true)
 
     useEffect(() => {
         context.getProducts();
-        context.getProductById()
     }, [])
 
     const context = {
-        products, oneProduct, setOneProduct, 
+        products, oneProduct, setOneProduct,
+        isLoading, setLoading, 
         getProducts: async() => {
             try {
                 const productResponse = await api.post('/products', searchInputs)
                 setProducts(productResponse.data)
+                setLoading(false)
             } catch (error) {
                 toast.error()
             }
@@ -32,6 +34,7 @@ function ProductProvider(props) {
             } catch (error) {
                 toast.error()
             }
+            setLoading(false)
         }
     }
 

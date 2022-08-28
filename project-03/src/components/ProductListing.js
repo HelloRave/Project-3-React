@@ -4,7 +4,7 @@ import { ProductContext } from "../context/ProductContext";
 
 export default function ProductListing() {
 
-    const { products, setOneProduct, getProductById } = useContext(ProductContext)
+    const { products, isLoading } = useContext(ProductContext)
 
     return (
         <Fragment>
@@ -14,17 +14,23 @@ export default function ProductListing() {
 
 
             {/* Display All Products Here */}
-            {products.map(product => {
-                return (
-                    <Link to={'/products/' + product.product_id}>
-                        <div onClick={() => {getProductById(product.product_id)}}>
-                            Number: {product.product_id}
-                            {product.product_name}
-                        </div>
-                    </Link>
+            {isLoading ?
 
-                )
-            })}
+                <p>Loading</p>
+
+                :
+
+                products.map(product => {
+                    return (
+                        <Link to={'/products/' + product.product_id}>
+                            <div>
+                                Number: {product.product_id}
+                                {product.product_name}
+                            </div>
+                        </Link>
+
+                    )
+                })}
         </Fragment>
     )
 }
