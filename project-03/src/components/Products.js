@@ -30,13 +30,14 @@ export default function Products() {
     }
 
     const productStock = () => {
+
         if (selection.variant_id) {
             const stock = oneProduct.variants?.filter(variant => {
                 return (
                     variant.variant_id == selection.variant_id
                 )
-            })[0].stock
-            return stock
+            })
+            return stock[0].stock
         }
     }
 

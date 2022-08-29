@@ -9,7 +9,7 @@ const CartContext = createContext({})
 
 function CartProvider(props) {
 
-    const { token } = useContext(UserContext)
+    const { tokens } = useContext(UserContext)
     const navigate = useNavigate()
 
     const [cart, setCart] = useState([])
@@ -34,11 +34,11 @@ function CartProvider(props) {
         selection, setSelection,
         getCart: async () => {
             setLoadCart(true)
-            if (token) {
+            if (tokens) {
                 try {
                     const cartResponse = await api.get('/cart', {
                         headers: {
-                            Authorization: `Bearer ${token.accessToken}`
+                            Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
                     setCart(cartResponse.data)
@@ -53,13 +53,13 @@ function CartProvider(props) {
 
         },
         addToCart: async () => {
-            if (token) {
+            if (tokens) {
                 try {
                     await api.post(`/cart/${selection.variant_id}/add`, {
                         quantity: selection.quantity
                     }, {
                         headers: {
-                            Authorization: `Bearer ${token.accessToken}`
+                            Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
                     navigate('/cart')
@@ -77,13 +77,13 @@ function CartProvider(props) {
 
         },
         updateCartItem: async (variantId, newQuantity) => {
-            if (token) {
+            if (tokens) {
                 try {
                     await api.post(`/cart/${variantId}/update/quantity`, {
                         newQuantity
                     }, {
                         headers: {
-                            Authorization: `Bearer ${token.accessToken}`
+                            Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
                 } catch (error) {
@@ -96,11 +96,11 @@ function CartProvider(props) {
             }
         },
         deleteCartItem: async (variantId) => {
-            if (token) {
+            if (tokens) {
                 try {
                     await api.post(`/cart/${variantId}/delete`, {
                         headers: {
-                            Authorization: `Bearer ${token.accessToken}`
+                            Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
                 } catch {
@@ -109,18 +109,18 @@ function CartProvider(props) {
             }
         },
         checkout: async () => {
-            if (token && cart.length !== 0) {
+            if (tokens && cart.length !== 0) {
                 try {
                     const checkoutResponse = await api.get('/checkout', {
                         headers: {
-                            Authorization: `Bearer ${token.accessToken}`
+                            Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
                     setStripeKeys(checkoutResponse.data)
                 } catch (error) {
                     alert('Server error')
                 }
-            } else if (token && cart.length == 0) {
+            } else if (tokens && cart.length == 0) {
                 alert('No item to checkout')
             } else {
                 alert('Please login to checkout')
