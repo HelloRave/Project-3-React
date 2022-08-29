@@ -22,6 +22,8 @@ function UserProvider(props) {
 
     const [user, setUser] = useState(null)
 
+    const [loadUser, setLoadUser] = useState(true)
+
     // Detect change in tokens --> get user profile and new access token
     useEffect(() => {
 
@@ -37,6 +39,7 @@ function UserProvider(props) {
         
                     if (profileResponse) {
                         setUser(profileResponse.data)
+                        setLoadUser(false)
                     }
                 } catch {
                     toast.error('🦄 Unable to get user data!', {
@@ -98,6 +101,7 @@ function UserProvider(props) {
     const context = {
         loginData, setLoginData, 
         tokens, user,
+        loadUser, setLoadUser, 
         registerData, setRegisterData, 
         register: async (registerInfo) => {
             try {

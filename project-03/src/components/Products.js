@@ -1,18 +1,18 @@
-import { Fragment, useContext, useEffect } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 export default function Products() {
 
-    const { oneProduct, getProducts, getProductById, isLoading, setLoading,
+    const { oneProduct, getProductById, isLoading, setLoading,
     } = useContext(ProductContext)
 
-    const { selection, setSelection } = useContext(CartContext)
+    const { selection, setSelection, addToCart, getCart } = useContext(CartContext)
 
     const { product_id } = useParams()
+
+    const [quantity, setQuantity] = useState(1)
 
     useEffect(() => {
         const getProduct = async () => {
@@ -27,6 +27,25 @@ export default function Products() {
             ...selection,
             [e.target.name]: e.target.value
         })
+    }
+
+    const productStock = () => {
+        if (selection.variant_id) {
+            const stock = oneProduct.variants?.filter(variant => {
+                return (
+                    variant.variant_id == selection.variant_id
+                )
+            })[0].stock
+            return stock
+        }
+    }
+
+    const addSelection = async() => {
+        await setSelection({
+            ...selection, quantity
+        })
+        await addToCart()
+        await getCart()
     }
 
     return (
@@ -119,33 +138,30 @@ export default function Products() {
                                             {
                                                 selection.variant_id ?
                                                     <p>
-                                                        Available stocks: {
-                                                            oneProduct.variants?.filter(variant => {
-                                                                return (
-                                                                    variant.variant_id == selection.variant_id
-                                                                )
-                                                            })[0].stock
-                                                        }
+                                                        Available stocks: {productStock()}
                                                     </p>
-
 
                                                     :
 
                                                     null
-
                                             }
-
 
                                         </div>
 
                                         <label className="form-label">Quantity</label>
                                         <div className="d-flex align-items-center">
-                                            <button className="productQuantityInput">
-                                                -
-                                            </button>
-                                            <div className="productQuantity">{1}</div>
-                                            <div className="productQuantityInput">+</div>
+                                            <div className="d-flex align-items-center me-3">
+                                                <button className="productQuantityInput"
+                                                    disabled={!quantity || quantity == 1 || !selection.variant_id ? true : false}
+                                                    onClick={() => { setQuantity(quantity - 1) }}>-</button>
+                                                <div className="productQuantity">{quantity}</div>
+                                                <div className="productQuantityInput"
+                                                    disabled={!quantity || quantity == productStock() ||!selection.variant_id ? true : false}
+                                                    onClick={() => { setQuantity(quantity + 1) }}>+</div>
+                                            </div>
+                                            <button onClick={addSelection}>Add to Cart</button>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

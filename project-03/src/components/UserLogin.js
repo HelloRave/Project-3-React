@@ -20,7 +20,7 @@ export default function UserLogin() {
         if (loginSuccess) {
             navigate('/profile')
         } else {
-            navigate('/register') //Improve please
+            navigate('/register')
         }
     }
 

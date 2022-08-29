@@ -18,15 +18,21 @@ function CartProvider(props) {
     const [loadCart, setLoadCart] = useState(true)
 
     useEffect(() => {
-        const stripe = loadStripe(`${stripeKeys.publishableKey}`)
-        // stripe.redirectToCheckout({
-        //     sessionId: stripeKeys.sessionId
-        // })
+
+        const stripePromise = async () => {
+            const stripe = await loadStripe(`${stripeKeys.publishableKey}`)
+            console.log(stripe)
+            stripe.redirectToCheckout({
+                sessionId: stripeKeys.sessionId
+            })
+        }
+        stripePromise()
+
     }, [stripeKeys])
 
     const context = {
         selection, setSelection,
-        getCart: async() => {
+        getCart: async () => {
             setLoadCart(true)
             if (token) {
                 try {
@@ -44,9 +50,9 @@ function CartProvider(props) {
                 }
             }
             setLoadCart(false)
-            
+
         },
-        addToCart: async() => {
+        addToCart: async () => {
             if (token) {
                 try {
                     await api.post(`/cart/${selection.variant_id}/add`, {
@@ -56,7 +62,8 @@ function CartProvider(props) {
                             Authorization: `Bearer ${token.accessToken}`
                         }
                     })
-                } catch(error) {
+                    navigate('/cart')
+                } catch (error) {
                     if (error.response.status === 403) {
                         alert('Exceed stock available')
                     } else {
@@ -65,12 +72,13 @@ function CartProvider(props) {
                 }
             } else {
                 alert('Login to add to cart')
+                navigate('/login')
             }
-            
+
         },
-        updateCartItem: async(variantId, newQuantity) => {
+        updateCartItem: async (variantId, newQuantity) => {
             if (token) {
-                try {   
+                try {
                     await api.post(`/cart/${variantId}/update/quantity`, {
                         newQuantity
                     }, {
@@ -78,7 +86,7 @@ function CartProvider(props) {
                             Authorization: `Bearer ${token.accessToken}`
                         }
                     })
-                } catch(error) {
+                } catch (error) {
                     if (error.response.status === 403) {
                         alert('Exceed stock available')
                     } else {
@@ -87,7 +95,7 @@ function CartProvider(props) {
                 }
             }
         },
-        deleteCartItem: async(variantId) => {
+        deleteCartItem: async (variantId) => {
             if (token) {
                 try {
                     await api.post(`/cart/${variantId}/delete`, {
@@ -100,7 +108,7 @@ function CartProvider(props) {
                 }
             }
         },
-        checkout: async() => {
+        checkout: async () => {
             if (token && cart.length !== 0) {
                 try {
                     const checkoutResponse = await api.get('/checkout', {

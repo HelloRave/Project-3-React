@@ -4,7 +4,7 @@ import { UserContext } from "../context/UserContext";
 
 export default function Profile() {
 
-    const { user, logout } = useContext(UserContext)
+    const { user, logout, loadUser } = useContext(UserContext)
     const navigate = useNavigate()
 
     const userLogout = async() => {
@@ -14,7 +14,14 @@ export default function Profile() {
 
     return (
         <Fragment>
-            {user ?
+            {
+                loadUser ? 
+
+                null
+
+                :
+
+                user ?
                 <Fragment>
                     <p>Hello User</p>
                     <p>{user.user_id}</p>
@@ -26,7 +33,9 @@ export default function Profile() {
                 :
 
                 <p>Please <Link to={'/login'}>login</Link></p>
+                
             }
+            
         </Fragment>
     )
 }
