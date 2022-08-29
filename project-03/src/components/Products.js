@@ -2,11 +2,13 @@ import { Fragment, useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { ProductContext } from "../context/ProductContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 
 export default function Products() {
 
     const { oneProduct, getProducts, getProductById, isLoading, setLoading,
-         } = useContext(ProductContext)
+    } = useContext(ProductContext)
 
     const { selection, setSelection } = useContext(CartContext)
 
@@ -113,6 +115,36 @@ export default function Products() {
                                                 })}
 
                                             </select>
+
+                                            {
+                                                selection.variant_id ?
+                                                    <p>
+                                                        Available stocks: {
+                                                            oneProduct.variants?.filter(variant => {
+                                                                return (
+                                                                    variant.variant_id == selection.variant_id
+                                                                )
+                                                            })[0].stock
+                                                        }
+                                                    </p>
+
+
+                                                    :
+
+                                                    null
+
+                                            }
+
+
+                                        </div>
+
+                                        <label className="form-label">Quantity</label>
+                                        <div className="d-flex align-items-center">
+                                            <button className="productQuantityInput">
+                                                -
+                                            </button>
+                                            <div className="productQuantity">{1}</div>
+                                            <div className="productQuantityInput">+</div>
                                         </div>
                                     </div>
                                 </div>
