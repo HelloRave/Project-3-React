@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api";
 import { UserContext } from "./UserContext";
 import { loadStripe } from '@stripe/stripe-js';
+import { toast } from "react-toastify"
 
 const CartContext = createContext({})
 
@@ -17,13 +18,14 @@ function CartProvider(props) {
     const [loadCart, setLoadCart] = useState(true)
 
     useEffect(() => {
-        const stripe = loadStripe(stripeKeys.publishableKey)
-        stripe.redirectToCheckout({
-            sessionId: stripeKeys.sessionId
-        })
+        const stripe = loadStripe(`${stripeKeys.publishableKey}`)
+        // stripe.redirectToCheckout({
+        //     sessionId: stripeKeys.sessionId
+        // })
     }, [stripeKeys])
 
     const context = {
+        selection, setSelection,
         getCart: async() => {
             setLoadCart(true)
             if (token) {
