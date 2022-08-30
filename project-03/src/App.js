@@ -17,6 +17,8 @@ import UserLogin from './components/UserLogin';
 import { ProductProvider } from './context/ProductContext';
 import Navbar from './components/Navbar';
 import { CartProvider } from './context/CartContext';
+import CheckoutSuccess from './components/CheckoutSuccess';
+import CheckoutCancel from './components/CheckoutCancel';
 
 function App() {
   return (
@@ -35,6 +37,8 @@ function App() {
                 <Route path='/products' element={<ProductListing />} />
                 <Route path='/products/:product_id' element={<Products />} />
                 <Route path='/cart' element={<Cart />} />
+                <Route path='/checkout/success' element={<CheckoutSuccess />} />
+                <Route path='/checkout/cancel' element={<CheckoutCancel />} />
                 <Route path='/orders' element={<Orders />} />
                 <Route path='/profile' element={<Profile />} />
                 <Route path='/register' element={<Register />} />
