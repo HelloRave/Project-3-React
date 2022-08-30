@@ -17,10 +17,21 @@ export default function Products() {
     useEffect(() => {
         const getProduct = async () => {
             setLoading(true)
+            await setSelection({ variant_id: "", quantity: 1 })
             await getProductById(product_id)
         }
-        getProduct()
+
+        if (product_id) {
+            getProduct()
+        }
+        
     }, [product_id])
+
+    useEffect(() => {
+        setSelection({
+            ...selection, quantity
+        })
+    }, [quantity])
 
     const updateSelection = (e) => {
         setSelection({
@@ -42,9 +53,6 @@ export default function Products() {
     }
 
     const addSelection = async() => {
-        await setSelection({
-            ...selection, quantity
-        })
         await addToCart()
         await getCart()
     }
@@ -154,11 +162,11 @@ export default function Products() {
                                             <div className="d-flex align-items-center me-3">
                                                 <button className="productQuantityInput"
                                                     disabled={!quantity || quantity == 1 || !selection.variant_id ? true : false}
-                                                    onClick={() => { setQuantity(quantity - 1) }}>-</button>
+                                                    onClick={() => {setQuantity(quantity - 1)}}>-</button>
                                                 <div className="productQuantity">{quantity}</div>
                                                 <div className="productQuantityInput"
                                                     disabled={!quantity || quantity == productStock() ||!selection.variant_id ? true : false}
-                                                    onClick={() => { setQuantity(quantity + 1) }}>+</div>
+                                                    onClick={() => {setQuantity(quantity + 1)}}>+</div>
                                             </div>
                                             <button onClick={addSelection}>Add to Cart</button>
                                         </div>

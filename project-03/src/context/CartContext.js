@@ -13,7 +13,7 @@ function CartProvider(props) {
     const navigate = useNavigate()
 
     const [cart, setCart] = useState([])
-    const [selection, setSelection] = useState({ variant_id: "", quantity: "" })
+    const [selection, setSelection] = useState({ variant_id: "", quantity: 1 })
     const [stripeKeys, setStripeKeys] = useState({})
     const [loadCart, setLoadCart] = useState(true)
 
@@ -30,8 +30,13 @@ function CartProvider(props) {
 
     }, [stripeKeys])
 
+    useEffect(() => {
+        context.getCart()
+    }, [tokens])
+
     const context = {
         selection, setSelection,
+        cart, 
         getCart: async () => {
             setLoadCart(true)
             if (tokens) {
@@ -62,7 +67,6 @@ function CartProvider(props) {
                             Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
-                    navigate('/cart')
                 } catch (error) {
                     if (error.response.status === 403) {
                         alert('Exceed stock available')

@@ -1,11 +1,13 @@
 import { Fragment, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom"
+import { CartContext } from "../context/CartContext"
 import { UserContext } from "../context/UserContext"
 
 
 export default function Navbar() {
 
     const { user } = useContext(UserContext)
+    const { getCart } = useContext(CartContext)
     const navigate = useNavigate()
 
     const viewAccount = () => {
@@ -16,12 +18,8 @@ export default function Navbar() {
         }
     }
 
-    const viewCart = () => {
-        if (user) {
-            navigate('/cart')
-        } else {
-            navigate('/login')
-        }
+    const viewCart = async() => {
+        navigate('/cart')
     }
 
     return (
