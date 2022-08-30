@@ -53,3 +53,99 @@
     align-items: center;
     justify-content: center
 }
+
+.continueShopping, .checkout{
+    background: #f2f2f2;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #f2f2f2;
+    border-radius: 3px;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .2px;
+    color: #000;
+    line-height: 1.5rem;
+    text-decoration: none;
+    transition: background .2s;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 2px 1px 0 #ccc;
+    white-space: nowrap;
+    width: auto;
+    box-sizing: border-box;
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    margin-right: 0;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.continueShopping:hover, .checkout:hover {
+    text-decoration: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #666;
+}
+
+.cart-rows{
+    padding: 2.5rem 0.5rem !important;
+}
+
+.cartItemQuantityInput {
+    background: #f2f2f2;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #f2f2f2;
+    border-radius: 3px;
+    font-family: Helvetica;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: .2px;
+    color: #000;
+    line-height: 1.5rem;
+    text-decoration: none;
+    transition: background .2s;
+    height: 1.5rem;
+    width: 1.5rem;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: 0 2px 1px 0 #ccc;
+    white-space: nowrap;
+    width: auto;
+    box-sizing: border-box;
+    border-top-right-radius: 0!important;
+    border-bottom-right-radius: 0!important;
+    margin-right: 0;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cartItemQuantityInput:hover {
+    text-decoration: none;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #666;
+}
+
+.cartItemQuantityInput[disabled], .cartItemQuantityInput.disabled {
+    background: #fff;
+    border-color: #b3b3b3;
+    border-width: 2px;
+    color: #b3b3b3;
+    opacity: .8;
+    cursor: not-allowed;
+    box-shadow: initial;
+}
+
+.cartItemQuantity{
+    height: 1.5rem;
+    width: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
