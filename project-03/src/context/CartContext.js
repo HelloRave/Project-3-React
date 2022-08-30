@@ -25,8 +25,11 @@ function CartProvider(props) {
                 sessionId: stripeKeys.sessionId
             })
         }
-        stripePromise()
 
+        if (Object.keys(stripeKeys).length) {
+            stripePromise()
+        }
+        
     }, [stripeKeys])
 
     useEffect(() => {
@@ -102,7 +105,7 @@ function CartProvider(props) {
             if (tokens) {
                 try {
                     await api.post(`/cart/${variantId}/delete`, {
-                        
+
                     },{
                         headers: {
                             Authorization: `Bearer ${tokens.accessToken}`

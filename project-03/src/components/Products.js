@@ -48,7 +48,7 @@ export default function Products() {
                     variant.variant_id == selection.variant_id
                 )
             })
-            return stock[0].stock
+            return stock[0]?.stock
         }
     }
 
