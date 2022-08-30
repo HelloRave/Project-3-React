@@ -9,7 +9,8 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 export default function Cart() {
 
     const { tokens } = useContext(UserContext)
-    const { cart, checkout } = useContext(CartContext)
+    const { cart, setCart, 
+            deleteCartItem, checkout } = useContext(CartContext)
 
     const calculateSubtotal = () => {
         if (cart.length) {
@@ -27,6 +28,13 @@ export default function Cart() {
             return subTotal
         }
         return false
+    }
+
+    const onDelete = async(variantId) => {
+        await deleteCartItem(variantId)
+        setCart(
+            cart.filter(cartItem => cartItem.variant_id !== variantId)
+        )
     }
 
     return (
@@ -73,7 +81,9 @@ export default function Cart() {
                                                                     S${(cartItem.variant?.product?.cost * cartItem.quantity / 100).toFixed(2)}
                                                                 </td>
                                                                 <td className="cart-rows">
-                                                                    <div className="d-flex justify-content-center align-items-center" style={{ padding: "4px" }}>
+                                                                    <div className="d-flex justify-content-center align-items-center" 
+                                                                         style={{ padding: "4px" }}
+                                                                         onClick={() => {onDelete(cartItem.variant_id)}}>
                                                                         <FontAwesomeIcon icon={faTrashCan} />
                                                                     </div>
                                                                 </td>

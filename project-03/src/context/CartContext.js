@@ -21,7 +21,6 @@ function CartProvider(props) {
 
         const stripePromise = async () => {
             const stripe = await loadStripe(`${stripeKeys.publishableKey}`)
-            console.log(stripe)
             stripe.redirectToCheckout({
                 sessionId: stripeKeys.sessionId
             })
@@ -36,7 +35,7 @@ function CartProvider(props) {
 
     const context = {
         selection, setSelection,
-        cart, 
+        cart, setCart,
         getCart: async () => {
             setLoadCart(true)
             if (tokens) {
@@ -103,6 +102,8 @@ function CartProvider(props) {
             if (tokens) {
                 try {
                     await api.post(`/cart/${variantId}/delete`, {
+                        
+                    },{
                         headers: {
                             Authorization: `Bearer ${tokens.accessToken}`
                         }
