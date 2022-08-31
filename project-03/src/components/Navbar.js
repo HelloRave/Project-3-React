@@ -1,26 +1,11 @@
 import { Fragment, useContext } from "react"
-import { Link, useNavigate } from "react-router-dom"
-import { CartContext } from "../context/CartContext"
+import { Link } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
 
 
 export default function Navbar() {
 
     const { user } = useContext(UserContext)
-    const { getCart } = useContext(CartContext)
-    const navigate = useNavigate()
-
-    const viewAccount = () => {
-        if (user) {
-            navigate('/profile')
-        } else {
-            navigate('/login')
-        }
-    }
-
-    const viewCart = async () => {
-        navigate('/cart')
-    }
 
     return (
         <Fragment>
@@ -42,18 +27,35 @@ export default function Navbar() {
                                     Products
                                 </Link>
                             </li>
+                            <li className="nav-item">
+                                <Link to='/cart' className="nav-link text-decoration-none text-reset">
+                                    Cart
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link to='/orders' className="nav-link text-decoration-none text-reset">
+                                    Orders
+                                </Link>
+                            </li>
+                            <li className="nav-item">
+                                {
+                                    user ?
+
+                                        <Link to='/profile' className="nav-link text-decoration-none text-reset">
+                                            Accounts
+                                        </Link>
+
+                                        :
+
+                                        <Link to='/login' className="nav-link text-decoration-none text-reset">
+                                            Accounts
+                                        </Link>
+                                }
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
-            <div>
-                <button onClick={viewAccount}>Accounts</button>
-
-                <button onClick={viewCart}>Cart</button>
-
-                <button onClick={() => { navigate('/orders') }}>Orders</button>
-
-            </div>
         </Fragment>
     )
 }

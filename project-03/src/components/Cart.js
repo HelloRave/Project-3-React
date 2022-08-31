@@ -9,8 +9,8 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 export default function Cart() {
 
     const { tokens } = useContext(UserContext)
-    const { cart, setCart, 
-            deleteCartItem, checkout } = useContext(CartContext)
+    const { cart, setCart,
+        deleteCartItem, checkout } = useContext(CartContext)
 
     const calculateSubtotal = () => {
         if (cart.length) {
@@ -30,7 +30,7 @@ export default function Cart() {
         return false
     }
 
-    const onDelete = async(variantId, productName) => {
+    const onDelete = async (variantId, productName) => {
         await deleteCartItem(variantId, productName)
         setCart(
             cart.filter(cartItem => cartItem.variant_id !== variantId)
@@ -44,7 +44,22 @@ export default function Cart() {
 
                 {!tokens ?
 
-                    <p className="text-center">Please log in to view or add items to your shopping cart.</p>
+                    <Fragment>
+                        <p className="text-center py-3">Please log in to view or add items to your shopping cart.</p>
+                        <div className="col-12 d-flex justify-content-center align-items-center">
+                            <button className="continueShopping me-3">
+                                <Link to='/login' className="text-decoration-none text-reset">
+                                    Login
+                                </Link>
+                            </button>
+                            <button className="continueShopping">
+                                <Link to='/register' className="text-decoration-none text-reset">
+                                    Register
+                                </Link>
+                            </button>
+                        </div>
+                    </Fragment>
+
 
                     :
 
@@ -52,7 +67,7 @@ export default function Cart() {
                         {
                             cart.length ?
                                 <Fragment>
-                                    <div className="col-12 col-md-8">
+                                    <div className="col-12 col-md-8 my-3">
                                         <table className="table">
                                             <thead>
                                                 <tr>
@@ -81,9 +96,9 @@ export default function Cart() {
                                                                     S${(cartItem.variant?.product?.cost * cartItem.quantity / 100).toFixed(2)}
                                                                 </td>
                                                                 <td className="cart-rows">
-                                                                    <div className="d-flex justify-content-center align-items-center" 
-                                                                         style={{ padding: "4px" }}
-                                                                         onClick={() => {onDelete(cartItem.variant_id, cartItem.variant?.product?.product_name)}}>
+                                                                    <div className="d-flex justify-content-center align-items-center"
+                                                                        style={{ padding: "4px" }}
+                                                                        onClick={() => { onDelete(cartItem.variant_id, cartItem.variant?.product?.product_name) }}>
                                                                         <FontAwesomeIcon icon={faTrashCan} />
                                                                     </div>
                                                                 </td>
@@ -94,7 +109,7 @@ export default function Cart() {
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div className="col-12 col-md-4">
+                                    <div className="col-12 col-md-4 my-3">
                                         {
                                             calculateSubtotal() ?
 
@@ -138,7 +153,7 @@ export default function Cart() {
                                     <div className="col-12 d-flex justify-content-center align-items-center my-3">
                                         No Items In Cart
                                     </div>
-                                    <div className="col-12 d-flex justify-content-center align-items-center">
+                                    <div className="col-12 d-flex justify-content-center align-items-center my-3">
                                         <button className="continueShopping">
                                             <Link to='/products' className="text-decoration-none text-reset">
                                                 Continue Shopping

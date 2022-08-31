@@ -91,7 +91,7 @@ export default function ProductListing() {
 
                 products.map(product => {
                     return (
-                        <Link to={'/products/' + product.product_id}>
+                        <Link to={'/products/' + product.product_id} key={product.product_id}>
                             <div>
                                 Number: {product.product_id}
                                 {product.product_name}
