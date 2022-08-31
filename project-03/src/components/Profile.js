@@ -4,12 +4,11 @@ import { UserContext } from "../context/UserContext";
 
 export default function Profile() {
 
-    const { user, logout, loadUser, setLoadUser } = useContext(UserContext)
+    const { user, logout, loadUser } = useContext(UserContext)
     const navigate = useNavigate()
 
     const userLogout = async() => {
         await logout()
-        setLoadUser(true)
         navigate('/login')
     }
 

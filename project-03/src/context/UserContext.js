@@ -191,6 +191,7 @@ function UserProvider(props) {
                 localStorage.removeItem('tokens')
                 setTokens(null)
                 setUser(null)
+                setLoadUser(true)
             } catch(error) {
                 if (error?.response?.status === 400) {
                     alert('Invalid')
