@@ -19,6 +19,8 @@ import Navbar from './components/Navbar';
 import { CartProvider } from './context/CartContext';
 import CheckoutSuccess from './components/CheckoutSuccess';
 import CheckoutCancel from './components/CheckoutCancel';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -45,11 +47,12 @@ function App() {
                 <Route path='/login' element={<UserLogin />} />
 
               </Routes>
-              
+
             </ProductProvider>
           </CartProvider>
         </UserProvider>
       </Router>
+      <ToastContainer />
     </div>
   );
 }

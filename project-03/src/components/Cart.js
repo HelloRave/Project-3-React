@@ -30,8 +30,8 @@ export default function Cart() {
         return false
     }
 
-    const onDelete = async(variantId) => {
-        await deleteCartItem(variantId)
+    const onDelete = async(variantId, productName) => {
+        await deleteCartItem(variantId, productName)
         setCart(
             cart.filter(cartItem => cartItem.variant_id !== variantId)
         )
@@ -83,7 +83,7 @@ export default function Cart() {
                                                                 <td className="cart-rows">
                                                                     <div className="d-flex justify-content-center align-items-center" 
                                                                          style={{ padding: "4px" }}
-                                                                         onClick={() => {onDelete(cartItem.variant_id)}}>
+                                                                         onClick={() => {onDelete(cartItem.variant_id, cartItem.variant?.product?.product_name)}}>
                                                                         <FontAwesomeIcon icon={faTrashCan} />
                                                                     </div>
                                                                 </td>

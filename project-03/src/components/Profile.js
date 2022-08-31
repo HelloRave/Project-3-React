@@ -22,6 +22,7 @@ export default function Profile() {
                 :
 
                 user ?
+                
                 <Fragment>
                     <p>Hello User</p>
                     <p>{user.user_id}</p>

@@ -51,15 +51,22 @@ function CartProvider(props) {
                     setCart(cartResponse.data)
                     setLoadCart(false)
                 } catch {
-                    alert('Server error')
-                    toast.error()
+                    toast.error('Server Error', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                     setLoadCart(false)
                 }
             }
             setLoadCart(false)
 
         },
-        addToCart: async () => {
+        addToCart: async (productName) => {
             if (tokens) {
                 try {
                     await api.post(`/cart/${selection.variant_id}/add`, {
@@ -69,15 +76,48 @@ function CartProvider(props) {
                             Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
+                    toast.success(`${productName} added to cart!`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 } catch (error) {
                     if (error.response.status === 403) {
-                        alert('Exceed stock available')
+                        toast.error('Exceed stocks available!', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            });
                     } else {
-                        alert('Server error')
+                        toast.error('Server Error', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            });
                     }
                 }
             } else {
-                alert('Login to add to cart')
+                toast.error('Login to add to cart!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
                 navigate('/login')
             }
 
@@ -94,14 +134,30 @@ function CartProvider(props) {
                     })
                 } catch (error) {
                     if (error.response.status === 403) {
-                        alert('Exceed stock available')
+                        toast.error('Exceed stocks available!', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            });
                     } else {
-                        alert('Server error')
+                        toast.error('Server Error', {
+                            position: "top-right",
+                            autoClose: 5000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            });
                     }
                 }
             }
         },
-        deleteCartItem: async (variantId) => {
+        deleteCartItem: async (variantId, productName) => {
             if (tokens) {
                 try {
                     await api.post(`/cart/${variantId}/delete`, {
@@ -111,8 +167,25 @@ function CartProvider(props) {
                             Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
+                    toast.success(`${productName} deleted from cart!`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 } catch {
-                    alert('Server error')
+                    toast.error('Server Error', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 }
             }
         },
@@ -126,12 +199,36 @@ function CartProvider(props) {
                     })
                     setStripeKeys(checkoutResponse.data)
                 } catch (error) {
-                    alert('Server error')
+                    toast.error('Server Error', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 }
             } else if (tokens && cart.length == 0) {
-                alert('No item to checkout')
+                toast.error('No item to checkout', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
             } else {
-                alert('Please login to checkout')
+                toast.error('Please login to checkout!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    });
                 navigate('/login')
             }
         }
