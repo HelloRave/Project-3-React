@@ -5,7 +5,7 @@ export default function CheckoutCancel() {
     return (
         <Fragment>
             <div className="container">
-                <h3 className="text-center my-4">Order Cancelled</h3>
+                <h3 className="text-center mb-4 mt-5">Order Cancelled</h3>
                 <p className="text-center py-3">Back to cart to checkout again or view other listings</p>
                 <div className="col-12 d-flex justify-content-center align-items-center">
                     <button className="continueShopping me-3">

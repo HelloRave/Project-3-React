@@ -22,9 +22,6 @@
     border-bottom-right-radius: 0!important;
     margin-right: 0;
     padding: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .theme-button:hover {
@@ -42,6 +39,15 @@
     opacity: .8;
     cursor: not-allowed;
     box-shadow: initial;
+}
+
+.searchField {
+    border: 1px solid black !important; 
+    border-radius: 0px !important;
+}
+
+.productCard {
+    height: 60vh;
 }
 
 .productQuantityInput {
