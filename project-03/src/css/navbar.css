@@ -11,3 +11,10 @@
     font-family: 'Montserrat', sans-serif;
     color: #C8C9C9;
 }
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}

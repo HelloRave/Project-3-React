@@ -17,3 +17,10 @@ body {
     justify-content: center
 }
 
+input:focus,
+input:hover,
+input:active,
+select:focus {
+    outline: 0px !important;
+    box-shadow: none !important;
+}
