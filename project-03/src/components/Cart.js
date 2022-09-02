@@ -40,7 +40,7 @@ export default function Cart() {
     return (
         <Fragment>
             <div className="container">
-                <h3 className="text-center my-4">My Shopping Cart</h3>
+                <h3 className="text-center mb-4 mt-5">My Shopping Cart</h3>
 
                 {!tokens ?
 
@@ -71,7 +71,7 @@ export default function Cart() {
                                         <table className="table">
                                             <thead>
                                                 <tr>
-                                                    <th>Items</th>
+                                                    <th colSpan={2}>Items</th>
                                                     <th style={{ textAlign: "center" }}>Quantity</th>
                                                     <th style={{ textAlign: "center" }}>Price</th>
                                                     <th></th>
@@ -81,8 +81,15 @@ export default function Cart() {
                                                 {
                                                     cart.map(cartItem => {
                                                         return (
-                                                            <tr>
-                                                                <td className="cart-rows">{cartItem.variant?.product?.product_name}</td>
+                                                            <tr key={cartItem.cart_item_id}>
+                                                                <td className="cart-rows">
+                                                                    <img src={cartItem.variant?.product_thumbnail_url} className='img-fluid' alt='...' />
+                                                                </td>
+                                                                <td className="cart-rows">
+                                                                    <p>{cartItem.variant?.product?.product_name}</p>
+                                                                    <p>Flavour: {cartItem.variant?.flavour?.flavour_name}</p>
+                                                                    <p>Serving Size: {cartItem.variant?.product?.serving_size}</p>
+                                                                </td>
                                                                 <td className="cart-rows"
                                                                     style={{ textAlign: "center" }}>
                                                                     <div className="d-flex justify-content-center align-items-center">
