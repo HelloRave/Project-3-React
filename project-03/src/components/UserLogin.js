@@ -39,7 +39,7 @@ export default function UserLogin() {
                    name='password'
                    value={loginData.password}
                    onChange={updateFormField} />
-            <button onClick={userLogin}>Click</button>
+            <button onClick={userLogin} className='theme-button'>Click</button>
 
             <Link to={'/register'}>Register</Link>
         </Fragment>

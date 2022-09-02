@@ -57,7 +57,7 @@ export default function Register() {
                    value={registerData.last_name}
                    onChange={updateFormField} />
             
-            <button onClick={registerUser}>Register</button>
+            <button onClick={registerUser} className='theme-button'>Register</button>
         </Fragment>
 
     )

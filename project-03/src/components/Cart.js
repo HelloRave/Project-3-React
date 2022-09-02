@@ -47,12 +47,12 @@ export default function Cart() {
                     <Fragment>
                         <p className="text-center py-3">Please log in to view or add items to your shopping cart.</p>
                         <div className="col-12 d-flex justify-content-center align-items-center">
-                            <button className="continueShopping me-3">
+                            <button className="theme-button me-3">
                                 <Link to='/login' className="text-decoration-none text-reset">
                                     Login
                                 </Link>
                             </button>
-                            <button className="continueShopping">
+                            <button className="theme-button">
                                 <Link to='/register' className="text-decoration-none text-reset">
                                     Register
                                 </Link>
@@ -93,9 +93,9 @@ export default function Cart() {
                                                                 <td className="cart-rows"
                                                                     style={{ textAlign: "center" }}>
                                                                     <div className="d-flex justify-content-center align-items-center">
-                                                                        <button className="cartItemQuantityInput">-</button>
+                                                                        <button className="theme-button cartItemQuantityInput">-</button>
                                                                         <div className="cartItemQuantity mx-1">{cartItem.quantity}</div>
-                                                                        <button className="cartItemQuantityInput">+</button>
+                                                                        <button className="theme-button cartItemQuantityInput">+</button>
                                                                     </div>
                                                                 </td>
                                                                 <td className="cart-rows"
@@ -148,7 +148,7 @@ export default function Cart() {
                                         }
 
                                         <div className="d-grid my-3">
-                                            <button onClick={() => checkout()} className='checkout'>Checkout</button>
+                                            <button onClick={() => checkout()} className='theme-button'>Checkout</button>
                                         </div>
                                     </div>
                                 </Fragment>
@@ -161,7 +161,7 @@ export default function Cart() {
                                         No Items In Cart
                                     </div>
                                     <div className="col-12 d-flex justify-content-center align-items-center my-3">
-                                        <button className="continueShopping">
+                                        <button className="theme-button">
                                             <Link to='/products' className="text-decoration-none text-reset">
                                                 Continue Shopping
                                             </Link>

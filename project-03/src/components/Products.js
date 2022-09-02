@@ -83,7 +83,7 @@ export default function Products() {
                                 </ol>
                             </nav>
 
-                            <div className="container">
+                            <div className="container bg-light p-4 mb-3">
                                 <div className="row">
                                     <div className="col-12 col-md-6">
 
@@ -160,15 +160,16 @@ export default function Products() {
                                         <label className="form-label">Quantity</label>
                                         <div className="d-flex align-items-center">
                                             <div className="d-flex align-items-center me-3">
-                                                <button className="productQuantityInput"
+                                                <button className="theme-button productQuantityInput"
                                                     disabled={!quantity || quantity == 1 || !selection.variant_id ? true : false}
                                                     onClick={() => {setQuantity(quantity - 1)}}>-</button>
                                                 <div className="productQuantity">{quantity}</div>
-                                                <div className="productQuantityInput"
+                                                <div className="theme-button productQuantityInput"
                                                     disabled={!quantity || quantity == productStock() ||!selection.variant_id ? true : false}
                                                     onClick={() => {setQuantity(quantity + 1)}}>+</div>
                                             </div>
-                                            <button onClick={() => {addSelection(oneProduct.product?.product_name)}}>Add to Cart</button>
+                                            <button onClick={() => {addSelection(oneProduct.product?.product_name)}}
+                                                    className='theme-button'>Add to Cart</button>
                                         </div>
 
                                     </div>

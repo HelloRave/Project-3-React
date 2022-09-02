@@ -106,7 +106,7 @@ export default function ProductListing() {
                                                     <Link to={'/products/' + product.product_id}
                                                         key={product.product_id}
                                                         className="col-12 col-sm-6 col-lg-4 text-decoration-none text-reset">
-                                                        <div className="border productCard">
+                                                        <div className="border bg-light productCard">
                                                             <div className="productImg" style={{backgroundImage:`url(${product.variants[0].product_image_url})`}}>
                                                             </div>
                                                             <div className="productDesc d-flex flex-column justify-content-center align-items-center">

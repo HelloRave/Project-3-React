@@ -40,12 +40,12 @@ export default function Orders() {
                         <Fragment>
                             <p className="text-center py-3">Please log in to view your orders.</p>
                             <div className="col-12 d-flex justify-content-center align-items-center">
-                                <button className="continueShopping me-3">
+                                <button className="theme-button me-3">
                                     <Link to='/login' className="text-decoration-none text-reset">
                                         Login
                                     </Link>
                                 </button>
-                                <button className="continueShopping">
+                                <button className="theme-button">
                                     <Link to='/register' className="text-decoration-none text-reset">
                                         Register
                                     </Link>
@@ -243,7 +243,7 @@ export default function Orders() {
                                                 No Orders Yet
                                             </div>
                                             <div className="col-12 d-flex justify-content-center align-items-center my-3">
-                                                <button className="continueShopping">
+                                                <button className="theme-button">
                                                     <Link to='/products' className="text-decoration-none text-reset">
                                                         Continue Shopping
                                                     </Link>

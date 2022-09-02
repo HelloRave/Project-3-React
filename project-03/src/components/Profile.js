@@ -29,7 +29,7 @@ export default function Profile() {
                     <p>{user.email}</p>
                     <p>{user.first_name}</p>
                     <p>{user.last_name}</p>
-                    <button onClick={userLogout}>Logout</button>
+                    <button onClick={userLogout} className='theme-button'>Logout</button>
                 </Fragment>
                 :
 
