@@ -22,7 +22,7 @@ export default function ProductListing() {
     return (
         <Fragment>
             <div className="container-fluid mt-4">
-                <div className="row px-4">
+                <div className="row px-4 gy-4">
                     <div className="col-12 col-sm-4 col-md-3">
                         <div className="container">
                             <div className="mb-3">

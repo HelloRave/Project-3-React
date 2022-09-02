@@ -53,9 +53,9 @@ export default function Navbar() {
             </div>
 
             <div className="d-flex justify-content-center align-items-center my-3">
-                <a style={{ textAlign: "center" }} className='mx-auto'>
-                    <h1>Brand Here</h1>
-                </a>
+                <Link to='/' style={{ textAlign: "center" }} className='mx-auto text-decoration-none text-reset'>
+                    <h1>Ripped</h1>
+                </Link>
                 <div style={{ right: "26px" }} className='d-none d-md-block position-absolute'>
                     <Facebook className="mx-2" />
                     <Instagram className="mx-2" />
@@ -64,7 +64,7 @@ export default function Navbar() {
                 </div>
             </div>
 
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <nav className="navbar navbar-expand-lg">
                 <div className="container-fluid">
                     <button className="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -72,7 +72,7 @@ export default function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li className="nav-item mx-4">
-                                <Link to='/' className="nav-link active text-decoration-none text-reset text-center" aria-current="page">
+                                <Link to='/' className="nav-link text-decoration-none text-reset text-center">
                                     Home
                                 </Link>
                             </li>
