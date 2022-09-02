@@ -1,3 +1,5 @@
+@import url(./productListing.css);
+
 .theme-button {
     background: #f2f2f2;
     border-width: 2px;
@@ -41,14 +43,7 @@
     box-shadow: initial;
 }
 
-.searchField {
-    border: 1px solid black !important; 
-    border-radius: 0px !important;
-}
 
-.productCard {
-    height: 60vh;
-}
 
 .productQuantityInput {
     background: #f2f2f2;

@@ -1,0 +1,19 @@
+.searchField {
+    border: 1px solid black !important;
+    border-radius: 0px !important;
+}
+
+.productCard {
+    height: 58vh;
+}
+
+.productImg {
+    height: 65%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.productDesc {
+    height: 35%;
+}

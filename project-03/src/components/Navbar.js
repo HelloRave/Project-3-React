@@ -5,10 +5,12 @@ import { Fragment, useContext } from "react"
 import { Link } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
 import { Facebook, Instagram, Github, Linkedin } from "react-bootstrap-icons"
+import { CartContext } from "../context/CartContext"
 
 export default function Navbar() {
 
     const { user } = useContext(UserContext)
+    const { cart } = useContext(CartContext)
 
     return (
         <Fragment>
@@ -37,7 +39,7 @@ export default function Navbar() {
                 <Link to='/cart' className="text-decoration-none text-reset">
                     <div className="me-4">
                         <FontAwesomeIcon icon={faShoppingCart} />
-                        <span className="ms-1">Cart</span>
+                        <span className="ms-1">Cart ({cart.length})</span>
                     </div>
                 </Link>
 

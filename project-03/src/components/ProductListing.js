@@ -105,10 +105,14 @@ export default function ProductListing() {
                                                 return (
                                                     <Link to={'/products/' + product.product_id}
                                                         key={product.product_id}
-                                                        className="col-12 col-sm-6 col-lg-4">
+                                                        className="col-12 col-sm-6 col-lg-4 text-decoration-none text-reset">
                                                         <div className="border productCard">
-                                                            Number: {product.product_id}
-                                                            {product.product_name}
+                                                            <div className="productImg" style={{backgroundImage:`url(${product.variants[0].product_image_url})`}}>
+                                                            </div>
+                                                            <div className="productDesc d-flex flex-column justify-content-center align-items-center">
+                                                                <p className="text-center m-0 py-2">{product.product_name}</p>
+                                                                <p className="m-0 py-2">S${product.cost / 100}</p>
+                                                            </div>
                                                         </div>
                                                     </Link>
 
