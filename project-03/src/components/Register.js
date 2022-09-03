@@ -22,7 +22,7 @@ export default function Register() {
 
     return (
         <Fragment>
-            <div className="container w-50 mx-auto">
+            <div className="container w-50 mx-auto mb-5">
                 <h2 className="mb-4 mt-5">Register</h2>
                 <div className="mb-4">
                     <form onSubmit={handleSubmit(registerHandler)}>

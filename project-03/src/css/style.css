@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Montserrat&family=Nunito:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Montserrat&family=Nunito:wght@300&family=Permanent+Marker&display=swap');
 @import url(./forms.css);
 @import url(./buttons.css);
 @import url(./navbar.css);
@@ -8,6 +8,25 @@
 body {
     font-family: 'Nunito', sans-serif;
     /* background-color: rgb(235, 225, 224); */
+}
+
+.landingPage {
+    height: 100vh;
+    background-image: url(../images/background.jpg);
+    background-color: rgba(57, 57, 57, 0.2);
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+}
+
+.tagLine {
+    background-color: rgba(200, 200, 200, 0.85);
+    font-family: 'Permanent Marker', cursive;
+    border-radius: 10px;
+}
+
+.footer {
+    background-color: rgb(228, 226, 226, 0.6);
 }
 
 .productQuantity {
