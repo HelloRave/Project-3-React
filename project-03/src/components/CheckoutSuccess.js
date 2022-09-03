@@ -8,12 +8,12 @@ export default function CheckoutSuccess() {
                 <h3 className="text-center mb-4 mt-5">Order Confirmed</h3>
                 <p className="text-center py-3">Thank you for shopping with us!</p>
                 <div className="col-12 d-flex justify-content-center align-items-center">
-                    <button className="continueShopping me-3">
+                    <button className="theme-button me-3">
                         <Link to='/products' className="text-decoration-none text-reset">
                             Continue Shopping
                         </Link>
                     </button>
-                    <button className="continueShopping">
+                    <button className="theme-button">
                         <Link to='/orders' className="text-decoration-none text-reset">
                             View Orders
                         </Link>

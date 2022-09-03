@@ -24,19 +24,57 @@ function UserProvider(props) {
 
     const [loadUser, setLoadUser] = useState(true)
 
+    useEffect(() => {
+        setLoadUser(true)
+        const localStorageToken = JSON.parse(localStorage.getItem('tokens'))
+        if (localStorageToken) {
+            const newAccessToken = async () => {
+                try {
+                    const refreshResponse = await api.post('/users/refresh', {
+                        refreshToken: localStorageToken.refreshToken
+                    })
+
+                    setTokens({
+                        refreshToken: localStorageToken.refreshToken,
+                        accessToken: refreshResponse.data.accessToken
+                    })
+
+                    localStorage.setItem('tokens',
+                        JSON.stringify({
+                            refreshToken: localStorageToken.refreshToken,
+                            accessToken: refreshResponse.data.accessToken
+                        }))
+                } catch {
+                    toast.error('Server error!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                    })
+                }
+            }
+
+            newAccessToken()
+        }
+        setLoadUser(false)
+    }, [])
+
     // Detect change in tokens --> get user profile and new access token
     useEffect(() => {
 
         // Get and set users 
         if (tokens) {
-            const getUserData = async() => {
+            const getUserData = async () => {
                 try {
                     const profileResponse = await api.get('/users/profile', {
                         headers: {
                             Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
-        
+
                     if (profileResponse) {
                         setUser(profileResponse.data)
                         setLoadUser(false)
@@ -51,12 +89,12 @@ function UserProvider(props) {
                         draggable: true,
                         progress: undefined,
                     })
-        
+
                     localStorage.removeItem('tokens')
                     setTokens(null)
                     setUser(null)
                 }
-                
+
             }
             getUserData()
         }
@@ -80,7 +118,7 @@ function UserProvider(props) {
                             accessToken: refreshResponse.data.accessToken
                         }))
                 } catch {
-                    toast.error('🦄 Session expired!', {
+                    toast.error('Session expired!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -99,10 +137,10 @@ function UserProvider(props) {
     }, [tokens])
 
     const context = {
-        loginData, setLoginData, 
+        loginData, setLoginData,
         tokens, user,
-        loadUser, setLoadUser, 
-        registerData, setRegisterData, 
+        loadUser, setLoadUser,
+        registerData, setRegisterData,
         register: async (registerInfo) => {
             try {
                 const registerResponse = await api.post('/users/register', registerInfo)
@@ -115,9 +153,9 @@ function UserProvider(props) {
                         'first_name': '',
                         'last_name': ''
                     })
-                    return true 
+                    return true
                 }
-            } catch(error) {
+            } catch (error) {
                 if (error?.response?.status === 403) {
                     toast.error('User existed, please use a different email!', {
                         position: "top-right",
@@ -140,7 +178,7 @@ function UserProvider(props) {
                     });
                 }
             }
-            
+
         },
         login: async (loginInfo) => {
             try {
@@ -154,9 +192,9 @@ function UserProvider(props) {
                     })
                     return true
                 }
-            } catch(error) {
+            } catch (error) {
                 if (error?.response?.status === 401) {
-                    toast.error('Please try to login again!', {
+                    toast.error('Incorrect email and/or password!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -176,7 +214,7 @@ function UserProvider(props) {
                         progress: undefined,
                     });
                 }
-                
+
             }
         },
         logout: async () => {
@@ -188,7 +226,7 @@ function UserProvider(props) {
                 setTokens(null)
                 setUser(null)
                 setLoadUser(true)
-            } catch(error) {
+            } catch (error) {
                 if (error?.response?.status === 400) {
                     toast.error('Logout error!', {
                         position: "top-right",
