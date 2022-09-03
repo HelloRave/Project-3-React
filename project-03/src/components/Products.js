@@ -181,9 +181,9 @@ export default function Products() {
                                                         disabled={!quantity || quantity == 1 || !selection.variant_id ? true : false}
                                                         onClick={() => { setQuantity(quantity - 1) }}>-</button>
                                                     <div className="productQuantity">{quantity}</div>
-                                                    <div className="theme-button productQuantityInput"
+                                                    <button className="theme-button productQuantityInput"
                                                         disabled={!quantity || quantity == productStock() || !selection.variant_id ? true : false}
-                                                        onClick={() => { setQuantity(quantity + 1) }}>+</div>
+                                                        onClick={() => { setQuantity(quantity + 1) }}>+</button>
                                                 </div>
                                                 <button onClick={() => { addSelection(oneProduct.product?.product_name) }}
                                                     className='theme-button'>Add to Cart</button>

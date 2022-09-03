@@ -33,6 +33,8 @@ function CartProvider(props) {
     }, [stripeKeys])
 
     useEffect(() => {
+        setCart([])
+        setSelection({ variant_id: "", quantity: 1 })
         context.getCart()
     }, [tokens])
 

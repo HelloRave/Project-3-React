@@ -2,15 +2,12 @@ import React, { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 import { UserContext } from "../context/UserContext";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
+import CartItem from "./CartItem";
 
 export default function Cart() {
 
     const { tokens } = useContext(UserContext)
-    const { cart, setCart,
-        deleteCartItem, checkout } = useContext(CartContext)
+    const { cart, checkout } = useContext(CartContext)
 
     const calculateSubtotal = () => {
         if (cart.length) {
@@ -28,13 +25,6 @@ export default function Cart() {
             return subTotal
         }
         return false
-    }
-
-    const onDelete = async (variantId, productName) => {
-        await deleteCartItem(variantId, productName)
-        setCart(
-            cart.filter(cartItem => cartItem.variant_id !== variantId)
-        )
     }
 
     return (
@@ -81,35 +71,8 @@ export default function Cart() {
                                                 {
                                                     cart.map(cartItem => {
                                                         return (
-                                                            <tr key={cartItem.cart_item_id}>
-                                                                <td className="cart-rows">
-                                                                    <img src={cartItem.variant?.product_thumbnail_url} className='img-fluid' alt='...' />
-                                                                </td>
-                                                                <td className="cart-rows">
-                                                                    <p>{cartItem.variant?.product?.product_name}</p>
-                                                                    <p>Flavour: {cartItem.variant?.flavour?.flavour_name}</p>
-                                                                    <p>Serving Size: {cartItem.variant?.product?.serving_size}</p>
-                                                                </td>
-                                                                <td className="cart-rows"
-                                                                    style={{ textAlign: "center" }}>
-                                                                    <div className="d-flex justify-content-center align-items-center">
-                                                                        <button className="theme-button cartItemQuantityInput">-</button>
-                                                                        <div className="cartItemQuantity mx-1">{cartItem.quantity}</div>
-                                                                        <button className="theme-button cartItemQuantityInput">+</button>
-                                                                    </div>
-                                                                </td>
-                                                                <td className="cart-rows"
-                                                                    style={{ textAlign: "center" }}>
-                                                                    S${(cartItem.variant?.product?.cost * cartItem.quantity / 100).toFixed(2)}
-                                                                </td>
-                                                                <td className="cart-rows">
-                                                                    <div className="d-flex justify-content-center align-items-center"
-                                                                        style={{ padding: "4px" }}
-                                                                        onClick={() => { onDelete(cartItem.variant_id, cartItem.variant?.product?.product_name) }}>
-                                                                        <FontAwesomeIcon icon={faTrashCan} />
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
+                                                            <CartItem key={cartItem.cart_item_id}
+                                                                      cartItem={cartItem}/>
                                                         )
                                                     })
                                                 }
