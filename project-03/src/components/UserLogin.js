@@ -4,7 +4,7 @@ import { UserContext } from '../context/UserContext'
 
 export default function UserLogin() {
 
-    const { loginData, setLoginData, login, user } = useContext(UserContext)
+    const { loginData, setLoginData, login } = useContext(UserContext)
 
     const navigate = useNavigate()
 
@@ -24,24 +24,35 @@ export default function UserLogin() {
         }
     }
 
-    return(
+    return (
         <Fragment>
-            <h3>Login</h3>
-
-            <label>Email</label>
-            <input type='text'
-                   name='email'
-                   value={loginData.email}
-                   onChange={updateFormField} />
-            
-            <label>Password</label>
-            <input type='text'
-                   name='password'
-                   value={loginData.password}
-                   onChange={updateFormField} />
-            <button onClick={userLogin} className='theme-button'>Click</button>
-
-            <Link to={'/register'}>Register</Link>
+            <div className="container w-50 mx-auto">
+                <h2 className="mb-4 mt-5">Login</h2>
+                <div className="mb-4">
+                    <div className="my-2">
+                        <label className="form-label">Email</label>
+                        <input type='text'
+                            name='email'
+                            value={loginData.email}
+                            onChange={updateFormField}
+                            className="form-control" />
+                    </div>
+                    <div className="my-2">
+                        <label className="form-label">Password</label>
+                        <input type='password'
+                            name='password'
+                            value={loginData.password}
+                            onChange={updateFormField}
+                            className="form-control" />
+                    </div>
+                </div>
+                <div className="d-grid my-3">
+                    <button onClick={userLogin} className='theme-button'>Login</button>
+                </div>
+                <div>
+                    <p className="text-center">Need an account ? <Link to={'/register'}>SIGN UP</Link></p>
+                </div>
+            </div>    
         </Fragment>
     )
 }

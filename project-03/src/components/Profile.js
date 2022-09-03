@@ -7,7 +7,7 @@ export default function Profile() {
     const { user, logout, loadUser } = useContext(UserContext)
     const navigate = useNavigate()
 
-    const userLogout = async() => {
+    const userLogout = async () => {
         await logout()
         navigate('/login')
     }
@@ -15,28 +15,31 @@ export default function Profile() {
     return (
         <Fragment>
             {
-                loadUser ? 
+                loadUser ?
 
-                null
+                    null
 
-                :
+                    :
 
-                user ?
-                
-                <Fragment>
-                    <p>Hello User</p>
-                    <p>{user.user_id}</p>
-                    <p>{user.email}</p>
-                    <p>{user.first_name}</p>
-                    <p>{user.last_name}</p>
-                    <button onClick={userLogout} className='theme-button'>Logout</button>
-                </Fragment>
-                :
+                    user ?
 
-                <p>Please <Link to={'/login'}>login</Link></p>
-                
+                        <Fragment>
+                            <div className="container">
+                                <h3 className="text-center mb-4 mt-5">Welcome back</h3>
+                                <h4 className="text-center py-3">{user.first_name} {user.last_name}!</h4>
+                                <div className="text-center">
+                                    <button onClick={userLogout} className='theme-button'>Logout</button>
+                                </div>
+                            </div>
+                        </Fragment>
+                        :
+
+                        <div className="container">
+                            <p className="text-center mb-4 mt-5">Please <Link to={'/login'}>login</Link></p>
+                        </div>
+
             }
-            
+
         </Fragment>
     )
 }

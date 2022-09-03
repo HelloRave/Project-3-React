@@ -40,7 +40,7 @@ export default function Navbar() {
                     <Link to='/cart' className="text-decoration-none text-reset navbar-text">
                         <div className="me-4">
                             <FontAwesomeIcon icon={faShoppingCart} />
-                            <span className="ms-1">Cart ({cart.length})</span>
+                            <span className="ms-1">Cart {user ? <span>({cart.length})</span> : null}</span>
                         </div>
                     </Link>
 
