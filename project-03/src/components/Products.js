@@ -115,21 +115,33 @@ export default function Products() {
 
                                     <div className="col-12 col-md-6">
                                         <h3>{oneProduct.product?.product_name}</h3>
-                                        <p>{oneProduct.product?.brand.brand_name}</p>
+                                        <p>Brand: {oneProduct.product?.brand.brand_name}</p>
                                         <p>{oneProduct.product?.description}</p>
                                         {oneProduct.product?.allergens.length ?
 
-                                            oneProduct.product?.allergens.map((allergen) => {
-                                                return (
-                                                    <span className="badge bg-secondary" key={allergen.allergen_id}>{allergen.allergen_name}</span>
-                                                )
-                                            })
+                                            <p>
+                                                <span className="me-2">Allergens:</span>
+                                                {oneProduct.product?.allergens.map((allergen) => {
+                                                    return (
+                                                        <span className="badge bg-secondary me-2" key={allergen.allergen_id}>
+                                                            {allergen.allergen_name}
+                                                        </span>
+
+                                                    )
+                                                })}
+                                            </p>
 
                                             :
 
-                                            <span className="badge bg-secondary">No allergens</span>}
+                                            <p>
+                                                Allergens: 
+                                                <span className="badge bg-secondary ms-2">No allergens</span>
+                                            </p>
+                                        }
 
-                                        <p>S${((oneProduct.product?.cost) / 100).toFixed(2)}</p>
+                                        <p className="h1 my-2 py-3 ps-2 border-top border-bottom">
+                                            S${((oneProduct.product?.cost) / 100).toFixed(2)}
+                                        </p>
 
                                         <div>
                                             <label className="form-label">Flavours</label>
@@ -161,21 +173,22 @@ export default function Products() {
 
                                         </div>
 
-                                        <label className="form-label">Quantity</label>
-                                        <div className="d-flex align-items-center">
-                                            <div className="d-flex align-items-center me-3">
-                                                <button className="theme-button productQuantityInput"
-                                                    disabled={!quantity || quantity == 1 || !selection.variant_id ? true : false}
-                                                    onClick={() => { setQuantity(quantity - 1) }}>-</button>
-                                                <div className="productQuantity">{quantity}</div>
-                                                <div className="theme-button productQuantityInput"
-                                                    disabled={!quantity || quantity == productStock() || !selection.variant_id ? true : false}
-                                                    onClick={() => { setQuantity(quantity + 1) }}>+</div>
+                                        <div className="mt-3">
+                                            <label className="form-label">Quantity</label>
+                                            <div className="d-flex align-items-center">
+                                                <div className="d-flex align-items-center me-3">
+                                                    <button className="theme-button productQuantityInput"
+                                                        disabled={!quantity || quantity == 1 || !selection.variant_id ? true : false}
+                                                        onClick={() => { setQuantity(quantity - 1) }}>-</button>
+                                                    <div className="productQuantity">{quantity}</div>
+                                                    <div className="theme-button productQuantityInput"
+                                                        disabled={!quantity || quantity == productStock() || !selection.variant_id ? true : false}
+                                                        onClick={() => { setQuantity(quantity + 1) }}>+</div>
+                                                </div>
+                                                <button onClick={() => { addSelection(oneProduct.product?.product_name) }}
+                                                    className='theme-button'>Add to Cart</button>
                                             </div>
-                                            <button onClick={() => { addSelection(oneProduct.product?.product_name) }}
-                                                className='theme-button'>Add to Cart</button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>

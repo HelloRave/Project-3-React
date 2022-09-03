@@ -1,6 +1,7 @@
 import React, { Fragment, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
+import Loading from "./Loading";
 
 export default function Profile() {
 
@@ -17,7 +18,9 @@ export default function Profile() {
             {
                 loadUser ?
 
-                    null
+                    <div className="mt-5 pt-5">
+                        <Loading />
+                    </div>
 
                     :
 
