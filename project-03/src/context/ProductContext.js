@@ -31,8 +31,15 @@ function ProductProvider(props) {
                 setAllergens((await api.get('/products/allergens')).data);
                 setFlavours((await api.get('/products/flavours')).data)
             } catch (error) {
-                alert('Server error')
-                toast.error()
+                toast.error('Server error!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
             }         
         },
         getProducts: async() => {

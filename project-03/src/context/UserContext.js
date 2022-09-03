@@ -42,7 +42,7 @@ function UserProvider(props) {
                         setLoadUser(false)
                     }
                 } catch {
-                    toast.error('🦄 Unable to get user data!', {
+                    toast.error('Unable to get user data!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -119,8 +119,7 @@ function UserProvider(props) {
                 }
             } catch(error) {
                 if (error?.response?.status === 403) {
-                    alert('User existed')
-                    toast.error('🦄 Login error!', {
+                    toast.error('User existed, please use a different email!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -130,8 +129,7 @@ function UserProvider(props) {
                         progress: undefined,
                     });
                 } else {
-                    alert('Server error')
-                    toast.error('🦄 Server error!', {
+                    toast.error('Server error!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -158,8 +156,7 @@ function UserProvider(props) {
                 }
             } catch(error) {
                 if (error?.response?.status === 401) {
-                    alert('Wrong login info')
-                    toast.error('🦄 Login error!', {
+                    toast.error('Please try to login again!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -169,8 +166,7 @@ function UserProvider(props) {
                         progress: undefined,
                     });
                 } else {
-                    alert('Server error')
-                    toast.error('🦄 Server error!', {
+                    toast.error('Server error!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -194,8 +190,7 @@ function UserProvider(props) {
                 setLoadUser(true)
             } catch(error) {
                 if (error?.response?.status === 400) {
-                    alert('Invalid')
-                    toast.error('🦄 Login error!', {
+                    toast.error('Logout error!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -205,8 +200,7 @@ function UserProvider(props) {
                         progress: undefined,
                     });
                 } else {
-                    alert('Server error')
-                    toast.error('🦄 Server error!', {
+                    toast.error('Server error!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,

@@ -2,6 +2,7 @@ import { Fragment, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import api from "../api";
 import { UserContext } from "../context/UserContext";
+import Loading from "./Loading";
 
 export default function Orders() {
 
@@ -59,7 +60,7 @@ export default function Orders() {
                             {
                                 loadOrders ?
 
-                                    <p>Loading</p>
+                                    <Loading />
 
                                     :
 

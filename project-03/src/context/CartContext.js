@@ -132,6 +132,15 @@ function CartProvider(props) {
                             Authorization: `Bearer ${tokens.accessToken}`
                         }
                     })
+                    toast.success(`Quantity updated!`, {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        });
                 } catch (error) {
                     if (error.response.status === 403) {
                         toast.error('Exceed stocks available!', {

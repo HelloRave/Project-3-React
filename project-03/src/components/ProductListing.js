@@ -1,6 +1,7 @@
 import { Fragment, useContext } from "react";
 import { Link } from "react-router-dom";
 import { ProductContext } from "../context/ProductContext";
+import Loading from "./Loading";
 
 export default function ProductListing() {
 
@@ -93,7 +94,9 @@ export default function ProductListing() {
                     <div className="col-12 col-sm-8 col-md-9">
                         {isLoading ?
 
-                            <p>Loading</p>
+                            <Fragment>
+                                <Loading />
+                            </Fragment>
 
                             :
 

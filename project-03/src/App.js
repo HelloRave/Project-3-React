@@ -47,7 +47,6 @@ function App() {
                 <Route path='/login' element={<UserLogin />} />
 
               </Routes>
-
             </ProductProvider>
           </CartProvider>
         </UserProvider>
