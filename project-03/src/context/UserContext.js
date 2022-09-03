@@ -141,7 +141,7 @@ function UserProvider(props) {
         tokens, user,
         loadUser, setLoadUser,
         registerData, setRegisterData,
-        register: async (registerInfo) => {
+        registerNewUser: async (registerInfo) => {
             try {
                 const registerResponse = await api.post('/users/register', registerInfo)
                 if (registerResponse) {
