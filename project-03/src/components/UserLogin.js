@@ -35,7 +35,7 @@ export default function UserLogin() {
                             name='email'
                             value={loginData.email}
                             onChange={updateFormField}
-                            className="form-control" />
+                            className="form-control searchField" />
                     </div>
                     <div className="my-2">
                         <label className="form-label">Password</label>
@@ -43,7 +43,7 @@ export default function UserLogin() {
                             name='password'
                             value={loginData.password}
                             onChange={updateFormField}
-                            className="form-control" />
+                            className="form-control searchField" />
                     </div>
                 </div>
                 <div className="d-grid my-3">
