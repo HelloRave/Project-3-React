@@ -1,8 +1,16 @@
 # Ripped
 
-![MediMap layout across different devices]()
+![Ripped layout across different devices]()
 
-Live demo can be accessed [here]().
+Live demo for customers can be accessed [here](https://mrripped.netlify.app/).
+* Test Account: 
+    * Email: hellorave@gemail.com
+    * Password: asdfg
+
+Live demo for admin/shop owners can be accessed [here](https://hww-tgc18-project-03.herokuapp.com/admin/login).
+* Test Account: 
+    * Email: janedoe@gemail.com
+    * Password: qwerty
 
 ## Project Overview 
 
@@ -24,35 +32,44 @@ Live demo can be accessed [here]().
 
 **User** 
 
-- Demographic: Users may fall into either of the following - forgetting to bring their long term medications when travelling overseas, falling short of current supplies before travelling back (foreigner) or next appointment (locals/foreingers)
+- Demographic: Athlete or gym goer looking for protein supplements to meet their nutritional goals 
 
-- Needs: To know whether a medication is available in Singapore, whether it can be bought off-the-counter, and where the medications can be bought.
+- Needs: Search for protein supplements according to their category of usage and/or allergens 
 
-- Pain points: Information about classification of medications on Health Science Authority's website is difficult to find. 
+- Pain points: most ecommerce stores sell only one or selected brands of protein supplements  
 
 | User Stories | Acceptance Criteria(s) |
 | ------------ | ---------------------- |
-| As a parent whose child is down with a runny nose, I want to know if I am able to get the medication that the doctor had prescribed previously without having to go back to the clinic | Search function that show the classification of the medication and able to zoom in to show pharmacies that are within 1km of her current location| 
-| As a owner of pharmacy outlet, I would want to know what are the common searches that users have input to tailor future marketing and education outreahch | History of user inputs are stored |  
+| As a gym goer/athlete, I woud like to look for familiar brands/flavours of protein supplements that I usually consume | Website helps users to search products by product name, brand or flavours |
+| As a gym goer/athlete with known allergies, I woud like to look avoid protein supplements with allergens to consume | Products are labelled with the types of allergens they contain |
+| As an ectomorph or endomorph body type, I would like to be able to look for protein supplements to bulk up or to aid in weight loss | Website helps users to search products category (eg. Mass gainer, fat burner etc) |
 
 **2. Scope** 
 
 **Functional**
 
-- Perform search on either landing or map page
-- Alert to show classification of medication (or unavailable) after performing searches 
-- Table to display search results, able to filter based on either brand name or classification of medications 
-- Legend to display information about the markers 
-- Quick access to previous searches 
-- Zoom in on current location and pharmacies 1km within current location 
+* For customers: 
+    * Account registration, view profile, login and logout
+    * Browse product listing, filter/search products and view details of individual product
+    * Add products to cart 
+    * Cart management (update quantity of products, remove products from cart and checkout/make payment via Stripe)
+
+* For admins/shop owners: 
+    * Register, login and logout for admin/shop owner
+    * Product and product's variants management (create, read, update, delete)
+    * Filter/search for products
+    * Orders management (view order details, update order status, delete order)
+    * Filter/search for orders
 
 **Non-Functional** 
 
-- Application is mobile responsive, with small screen having a navigation bar to avoid clutteredness on the screen 
+- Application is mobile responsive
 
 **3. Structure** 
 
-![Structure]() 
+![Structure](/project-03/readme/Structure.png) 
+
+Checkout, order details, user profile and logout are only accessible after user has logged in successfully. 
 
 **4. Skeleton**
 
@@ -62,12 +79,10 @@ Live demo can be accessed [here]().
 
 **Fonts** 
 
-Proza Libre is used as the font for the application title on the landing page because of it's professional outlook. 
+
 
 **Icons** 
 
-- Fontawesome icons: to indicate home (to toggle from map to landing page), dropdown (to toggle for more functionalities), search, legend, zoom in. Able to style according to intention (colours, size etc) 
-- Flaticons: 5 distinct icons that intuitively represent - current location, general sales list stores, pharmacy-only medications stores, prescription only medicatios stores and hospitals  
 
 
 ## Technologies Used 
@@ -90,6 +105,7 @@ Test Cases can be found [here]()
 ## Deployment 
 
 **Frontend Deployment**
+
 The React app is hosted using [Netlify](https://www.netlify.com/).
 
 1. Sign up for an account at Netlify
@@ -124,8 +140,8 @@ Steps to publish:
 
 **Fonts, Icons and Images** 
 
-- [Google Font](https://fonts.google.com/specimen/Proza+Libre) - Landing page title 
-- [Font Awesome](https://fontawesome.com/) - Icons for navigation 
+- [Google Font](https://fonts.google.com/specimen/Proza+Libre) 
+- [Font Awesome](https://fontawesome.com/) 
 - [React Bootstrap Icons](https://www.npmjs.com/package/react-bootstrap-icons)
 - [Bootstrap 5](https://getbootstrap.com/) - Components and utilities
 - [Unsplash](https://unsplash.com/) - Landing page backgroud image  
