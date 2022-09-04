@@ -46,6 +46,16 @@ To establish an e-commerce store selling a wide variety of protein supplements o
 
 **Database**
 
+ERD Diagram
+
+<figure>
+    <img src="./project-03/readme/ERD.png" height="400" alt="Structure-express">
+</figure>
+
+Logical Schema
+
+![Logical Schema](/project-03/readme/LogicalSchema.png)
+
 **Functional**
 
 * For customers: 
