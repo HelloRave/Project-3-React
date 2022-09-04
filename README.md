@@ -146,7 +146,7 @@ Technology                                                                      
 
 ## Testing 
 
-Test Cases can be found [here]()
+Test Cases can be found [here](/project-03/readme/Test%20Cases.pdf)
 
 ## Deployment 
 
@@ -223,6 +223,8 @@ REFRESH_TOKEN_SECRET=
 **Others** 
 - [Lucidchart](https://www.lucidchart.com/pages/) - Design structure of page 
 - [Bytes](https://ui.dev/amiresponsive) - Display mobile responsiveness
+- [ERDPlus](https://erdplus.com/) - Construct ERD diagram
+- [SqlDBM](https://sqldbm.com/Home/) - Construct logical schema 
 - Product information, product images and web layouts: 
     - [MyProtein](https://www.myprotein.com.sg/)
     - [The Nutri X](https://www.thenutrix.com/)
